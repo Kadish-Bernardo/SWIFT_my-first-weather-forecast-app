@@ -14,6 +14,8 @@
 		4018908B2B6098BE0008D997 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 401890892B6098BE0008D997 /* LaunchScreen.storyboard */; };
 		40BB32F82BA9C8B20081E46B /* HourlyForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BB32F72BA9C8B20081E46B /* HourlyForecastCollectionViewCell.swift */; };
 		40BB32FA2BA9CEB90081E46B /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BB32F92BA9CEB90081E46B /* Color+Extensions.swift */; };
+		40BB32FC2BAA8DB10081E46B /* DailyForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BB32FB2BAA8DB10081E46B /* DailyForecastTableViewCell.swift */; };
+		40BB32FE2BAA97A70081E46B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BB32FD2BAA97A70081E46B /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		4018908C2B6098BE0008D997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40BB32F72BA9C8B20081E46B /* HourlyForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 		40BB32F92BA9CEB90081E46B /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		40BB32FB2BAA8DB10081E46B /* DailyForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastTableViewCell.swift; sourceTree = "<group>"; };
+		40BB32FD2BAA97A70081E46B /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 				401890802B6098BC0008D997 /* SceneDelegate.swift */,
 				401890822B6098BC0008D997 /* ViewController.swift */,
 				40BB32F72BA9C8B20081E46B /* HourlyForecastCollectionViewCell.swift */,
+				40BB32FB2BAA8DB10081E46B /* DailyForecastTableViewCell.swift */,
+				40BB32FD2BAA97A70081E46B /* UIView+Extensions.swift */,
 				40BB32F92BA9CEB90081E46B /* Color+Extensions.swift */,
 				401890872B6098BE0008D997 /* Assets.xcassets */,
 				401890892B6098BE0008D997 /* LaunchScreen.storyboard */,
@@ -140,9 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40BB32FE2BAA97A70081E46B /* UIView+Extensions.swift in Sources */,
 				40BB32FA2BA9CEB90081E46B /* Color+Extensions.swift in Sources */,
 				401890832B6098BC0008D997 /* ViewController.swift in Sources */,
 				4018907F2B6098BC0008D997 /* AppDelegate.swift in Sources */,
+				40BB32FC2BAA8DB10081E46B /* DailyForecastTableViewCell.swift in Sources */,
 				40BB32F82BA9C8B20081E46B /* HourlyForecastCollectionViewCell.swift in Sources */,
 				401890812B6098BC0008D997 /* SceneDelegate.swift in Sources */,
 			);
