@@ -14,7 +14,6 @@ class DailyForecastTableViewCell: UITableViewCell {
     private lazy var weekDayLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "MON"
         label.textColor = UIColor.contrastColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -24,14 +23,12 @@ class DailyForecastTableViewCell: UITableViewCell {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "rainIcon")
         return imageView
     }()
     
     private lazy var minTemperatureLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Min 25°C"
         label.textColor = UIColor.contrastColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -40,7 +37,6 @@ class DailyForecastTableViewCell: UITableViewCell {
     private lazy var maxTemperatureLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Max 30°C"
         label.textColor = UIColor.contrastColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         return label
@@ -71,6 +67,14 @@ class DailyForecastTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func loadData(weekDay: String?, icon: UIImage?, min: String?, max: String?) {
+        weekDayLabel.text = weekDay
+        iconImageView.image = icon
+        minTemperatureLabel.text = "min \(min ?? "")"
+        maxTemperatureLabel.text = "max \(max ?? "")"
+    }
+
+    
     private func setupView() {
         backgroundColor = .clear
         selectionStyle = .none
@@ -86,7 +90,8 @@ class DailyForecastTableViewCell: UITableViewCell {
         stackView.setConstraintsToParent(contentView)
         
         NSLayoutConstraint.activate([
-            weekDayLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 50)
+            weekDayLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 50),
+            iconImageView.heightAnchor.constraint(equalToConstant: 30),
         ])
     }
 }
