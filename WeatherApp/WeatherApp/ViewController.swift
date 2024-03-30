@@ -11,7 +11,6 @@ class ViewController: UIViewController {
 
     private lazy var backgroundView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
-        imageView.image = UIImage(named: "background")
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -48,7 +47,6 @@ class ViewController: UIViewController {
     private lazy var weatherIcon: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "sunIcon")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -159,6 +157,7 @@ class ViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(DailyForecastTableViewCell.self, forCellReuseIdentifier: DailyForecastTableViewCell.identifier)
         return tableView
     }()
@@ -185,17 +184,29 @@ class ViewController: UIViewController {
     
     private func loadData() {
         cityLabel.text = city.name
+        
         temperatureLabel.text = forecastResponse?.current.temp.toCelsius()
+        
         humidityValueLabel.text = "\(forecastResponse?.current.humidity ?? 0) mm"
         windValueLabel.text = "\(forecastResponse?.current.windSpeed ?? 0) m/h"
+        
+        weatherIcon.image = UIImage(named: forecastResponse?.current.weather.first?.icon ?? "")
+        
+        if forecastResponse?.current.dt.isDayTime() ?? true {
+            backgroundView.image = UIImage(named: "backgroundDay")
+        } else {
+            backgroundView.image = UIImage(named: "backgroundNight")
+
+        }
+        
+        //backgroundView.image = forecastResponse?.current.dt.isDayTime() ?? true ? imageView.image = UIImage(named: "backgroundDay") : UIImage(named: "backgroundNight")
         
         hourlyCollectionView.reloadData()
         dailyForecastTableView.reloadData()
     }
     
     private func setupView() {
-        view.backgroundColor = .red
-        
+        //view.backgroundColor = .white
         setHierarchy()
         setConstraints()
     }
@@ -297,13 +308,13 @@ extension ViewController: UICollectionViewDataSource {
         
         let forecast = forecastResponse?.hourly[indexPath.row]
         cell.loadData(time: forecast?.dt.toHourFormat(),
-                      icon: UIImage(named: "sunIcon"),
+                      icon: UIImage(named: forecast?.weather.first?.icon ?? ""),
                       temp: forecast?.temp.toCelsius())
         return cell
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         forecastResponse?.daily.count ?? 0
     }
@@ -316,11 +327,15 @@ extension ViewController: UITableViewDataSource {
         
         let forecast = forecastResponse?.daily[indexPath.row]
         cell.loadData(weekDay: forecast?.dt.toWeekDayName().uppercased(),
-                      icon: UIImage(named: "rainIcon"),
+                      icon: UIImage(named: forecast?.weather.first?.icon ?? ""),
                       min: forecast?.temp.min.toCelsius(),
                       max: forecast?.temp.max.toCelsius())
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        60
     }
 }
 
