@@ -1,7 +1,7 @@
 # weather-forecast-app ☀️🌦️🌧️⛈️
 IOS weather forecast application integrated with the OpenWeather API. Project carried out during the introduction to IOS development course on the Attekita Dev Channel in partnership with Backfront Academy, containing some of my own changes!
 
-Xcode version used: 15.3 <br>
+Xcode version: 15.3 <br>
 Swift Language Version: 5.10 <br>
 IOS version: 17.4
 
