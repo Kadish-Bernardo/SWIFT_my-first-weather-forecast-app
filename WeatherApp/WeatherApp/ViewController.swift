@@ -206,7 +206,7 @@ class ViewController: UIViewController {
     }
     
     private func setupView() {
-        //view.backgroundColor = .white
+        view.backgroundColor = .white
         setHierarchy()
         setConstraints()
     }
@@ -298,7 +298,11 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        forecastResponse?.hourly.count ?? 0
+        if let count = forecastResponse?.hourly.count, count > 24{
+            return 24
+        } else {
+            return forecastResponse?.hourly.count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

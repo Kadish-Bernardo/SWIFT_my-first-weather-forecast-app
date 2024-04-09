@@ -22,8 +22,6 @@ class Service {
         let urlString = "\(baseURL)?lat=\(city.lat)&lon=\(city.lon)&appid=\(apiKey)&units=metric"
         guard let url = URL(string: urlString) else { return }
         
-        //print(urlString)
-        
         let task = session.dataTask(with: url) {data, response, error in
             guard let data = data else {
                 completion(nil)
