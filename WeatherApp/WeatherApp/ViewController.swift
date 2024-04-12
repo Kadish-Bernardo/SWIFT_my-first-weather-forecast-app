@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     private lazy var headerView: UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.contrastColor
         view.layer.cornerRadius = 20
         return view
     }()
@@ -28,9 +27,7 @@ class ViewController: UIViewController {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20)
-        //label.text = "São Paulo"
         label.textAlignment = .center
-        label.textColor = UIColor.letterColor
         return label
     }()
     
@@ -38,9 +35,7 @@ class ViewController: UIViewController {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 70, weight: .bold)
-        //label.text = "25°C"
         label.textAlignment = .left
-        label.textColor = UIColor.letterColor
         return label
     }()
     
@@ -56,16 +51,15 @@ class ViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Umidity"
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = UIColor.contrastColor
+        label.textColor = UIColor.standardLetterColor
         return label
     }()
     
     private lazy var humidityValueLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        //label.text = "100mm"
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = UIColor.contrastColor
+        label.textColor = UIColor.standardLetterColor
         return label
     }()
     
@@ -81,16 +75,15 @@ class ViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Wind"
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = UIColor.contrastColor
+        label.textColor = UIColor.standardLetterColor
         return label
     }()
     
     private lazy var windValueLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        //label.text = "30Mi"
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = UIColor.contrastColor
+        label.textColor = UIColor.standardLetterColor
         return label
     }()
     
@@ -106,7 +99,7 @@ class ViewController: UIViewController {
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 3
-        stackView.backgroundColor = UIColor.backgroundColor
+        stackView.backgroundColor = UIColor.standardBackgroundColor
         stackView.layer.cornerRadius = 10
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 12,
@@ -120,7 +113,7 @@ class ViewController: UIViewController {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text =  "HOURLY FORECAST"
-        label.textColor = UIColor.contrastColor
+        label.textColor = UIColor.standardLetterColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         label.textAlignment = .center
         return label
@@ -145,8 +138,7 @@ class ViewController: UIViewController {
     private lazy var dailyForecastLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text =  "NEXT FEW DAYS"
-        label.textColor = UIColor.contrastColor
+        label.textColor = UIColor.standardLetterColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         label.textAlignment = .center
         return label
@@ -187,26 +179,31 @@ class ViewController: UIViewController {
         
         temperatureLabel.text = forecastResponse?.current.temp.toCelsius()
         
-        humidityValueLabel.text = "\(forecastResponse?.current.humidity ?? 0) mm"
-        windValueLabel.text = "\(forecastResponse?.current.windSpeed ?? 0) m/h"
+        humidityValueLabel.text = "\(forecastResponse?.current.humidity ?? 0) MM"
+        windValueLabel.text = "\(forecastResponse?.current.windSpeed ?? 0) MPH"
+        dailyForecastLabel.text =  "\(forecastResponse?.daily.count ?? 0)-DAY FORECAST"
         
         weatherIcon.image = UIImage(named: forecastResponse?.current.weather.first?.icon ?? "")
         
         if forecastResponse?.current.dt.isDayTime() ?? true {
-            backgroundView.image = UIImage(named: "backgroundDay")
+            backgroundView.image = UIImage(named: "dayBackground")
+            headerView.backgroundColor = UIColor.dayContrastColor
+            cityLabel.textColor = UIColor.dayLetterColor
+            temperatureLabel.textColor = UIColor.dayLetterColor
+            
         } else {
-            backgroundView.image = UIImage(named: "backgroundNight")
-
+            backgroundView.image = UIImage(named: "nightBackground")
+            headerView.backgroundColor = UIColor.nightContrastColor
+            cityLabel.textColor = UIColor.nightLetterColor
+            temperatureLabel.textColor = UIColor.nightLetterColor
         }
-        
-        //backgroundView.image = forecastResponse?.current.dt.isDayTime() ?? true ? imageView.image = UIImage(named: "backgroundDay") : UIImage(named: "backgroundNight")
         
         hourlyCollectionView.reloadData()
         dailyForecastTableView.reloadData()
     }
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         setHierarchy()
         setConstraints()
     }

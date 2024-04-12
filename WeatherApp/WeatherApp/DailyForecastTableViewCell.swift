@@ -14,7 +14,7 @@ class DailyForecastTableViewCell: UITableViewCell {
     private lazy var weekDayLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.contrastColor
+        label.textColor = UIColor.standardLetterColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         return label
     }()
@@ -29,7 +29,7 @@ class DailyForecastTableViewCell: UITableViewCell {
     private lazy var minTemperatureLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.contrastColor
+        label.textColor = UIColor.standardLetterColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         return label
     }()
@@ -37,7 +37,7 @@ class DailyForecastTableViewCell: UITableViewCell {
     private lazy var maxTemperatureLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.contrastColor
+        label.textColor = UIColor.standardLetterColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         return label
     }()
