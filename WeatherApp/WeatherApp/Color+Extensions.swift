@@ -9,7 +9,16 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    static let contrastColor = UIColor(named: "contrastColor")
-    static let letterColor = UIColor(named: "letterColor")
-    static let backgroundColor = UIColor(named: "backgroundColor")
+    //Day
+    static let dayContrastColor = UIColor(named: "dayContrastColor")
+    static let dayLetterColor = UIColor(named: "dayLetterColor")
+    
+    //Both
+    static let standardBackgroundColor = UIColor(named: "standardBackgroundColor")
+    static let standardLetterColor = UIColor(named: "standardLetterColor")
+    
+    //Night
+    static let nightContrastColor = UIColor(named: "nightContrastColor")
+    static let nightLetterColor = UIColor(named: "nightLetterColor")
+    
 }
